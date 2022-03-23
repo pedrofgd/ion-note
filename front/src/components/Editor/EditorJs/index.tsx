@@ -1,36 +1,48 @@
-import { useEffect, useRef } from "react";
-import EditorJS, { EditorConfig } from "@editorjs/editorjs";
+import { useEffect } from 'react';
+import EditorJS from '@editorjs/editorjs';
 
-import { EditorProps } from "./types";
-import { tools, tunes } from "./config";
+import { tools } from './config';
 
-const EditorJs: React.FC<EditorProps> = ({
-  data,
-}) => {
-  const $editorJS = useRef<EditorJS>(null);
-
-  useEffect(() => {
-    // mount
-    if (!$editorJS.current) {
-      initEditorJS();
-    }
-
-    // destroy
-    return () => {
-      $editorJS.current?.destroy();
-      $editorJS.current = null;
-    };
-  }, []);
-
-  function initEditorJS() {
-    const editorJS = new EditorJS({
-      holder: 'editorjs',
+const EditorJs: React.FC = () => {
+  const initEditor = () => {
+    new EditorJS({
+      holder: "editor",
       tools,
-      data
+      // autofocus: true,
+      data: {
+        blocks: [
+          {
+            "id" : "871FOkhg8e",
+            "type" : "header",
+            "data" : {
+                "level" : 1
+            }
+          },
+          {
+            "id" : "871FOkhg8e",
+            "type" : "header",
+            "data" : {
+                "level" : 2
+            }
+          },
+          {
+            "id" : "871FOkhg8e",
+            "type" : "paragraph",
+            "data" : {
+                "text": ""
+            }
+          },
+        ]
+      }
     });
   }
 
-  return <div id={'editorjs'}></div>;
+  useEffect(() => {
+    initEditor();
+  }, []);
+
+
+  return <div id={"editor"}></div>;
 };
 
 export default EditorJs;

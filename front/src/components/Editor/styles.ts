@@ -4,6 +4,11 @@ export const Container = styled.div`
    grid-area: MV;
 
    max-height: 100vh;
-   display: flex;
-   padding: 0 40px;
+   padding: 0 0px;
+
+   overflow-y: scroll;
+
+   ::-webkit-scrollbar {
+      display: none;
+   }
 `

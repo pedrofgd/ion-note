@@ -1,16 +1,27 @@
 import { EditorTools, EditorTunes } from "./types";
 
 import Header from "@editorjs/header";
+import Paragraph from "@editorjs/paragraph";
 import Checklist from "@editorjs/checklist";
 import InlineCode from "@editorjs/inline-code";
 
 export const tools: EditorTools = {
+  paragraph: {
+    class: Paragraph,
+    inlineToolbar: true,
+    config: {
+      preserveBlank: true, /* save lines with only white space */
+      placeholder: 'Your note goes here'
+    }
+  },
   header: {
     class: Header,
     shortcut: "CMD+SHIFT+H",
     config: {
-      defaultLevel: 1,
-    },
+      placeholder: 'Enter your text here',
+      levels: [1, 2, 3, 4],
+      defaultLevel: 1
+    }
   },
   checklist: {
     class: Checklist,

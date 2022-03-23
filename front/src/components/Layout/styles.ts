@@ -4,16 +4,18 @@ import styled from 'styled-components'
 // CF - Conigurations
 // MV - Main view
 // SV - Secoundary view
+// IF - Informations
 
 export const Grid = styled.div`
   display: grid;
 
-  grid-template-columns: auto 380px;
-  grid-template-rows: 60px auto;
+  grid-template-columns: auto 350px;
+  grid-template-rows: 60px auto 30px;
 
   grid-template-areas:
     'H CF'
-    'MV SV';
+    'MV SV'
+    'IF SV';
 
   height: 100vh;
 `

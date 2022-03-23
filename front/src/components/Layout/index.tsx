@@ -1,8 +1,9 @@
-import Header from "../Header";
-import Editor from "../Editor";
-import Configurations from "../Configurations";
-import ListNotes from "../ListNotes";
 import { Grid } from "./styles";
+import Header from "../Header";
+import Configurations from "../Configurations";
+import Editor from "../Editor";
+import ListNotes from "../ListNotes";
+import InfoBar from "../InfoBar";
 
 const Layout: React.FC = () => {
    return (
@@ -11,6 +12,7 @@ const Layout: React.FC = () => {
          <Configurations />
          <Editor />
          <ListNotes />
+         <InfoBar />
       </Grid>
    );
 }

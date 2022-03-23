@@ -10,7 +10,7 @@ export const Container = styled.div<Props>`
    display: grid; 
    position: relative;
 
-   grid-template-columns: 250px auto;
+   grid-template-columns: 200px auto;
    grid-template-rows: auto auto;
 
    grid-template-areas:
