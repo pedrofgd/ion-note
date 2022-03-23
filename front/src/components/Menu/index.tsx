@@ -11,7 +11,7 @@ const Menu: React.FC<Props> = ({
 }) => {
    return (
       <Container>
-         <MenuOption isActive={true} href=""><NotesIcon /></MenuOption>
+         <MenuOption href=""><NotesIcon isActive={true} /></MenuOption>
          <MenuOption href=""><CalendarIcon /></MenuOption>
          <MenuOption href=""><TasksIcon /></MenuOption>
       </Container>

@@ -17,7 +17,7 @@ export const SearchBar = styled.div`
    display: flex;
    justify-content: space-between;
 
-   border-radius: 12px;
+   border-radius: 7px;
    background-color: ${props => props.theme.colors.button};
    padding: 11px;
 `

@@ -11,7 +11,7 @@ export const Container = styled.div`
    border-top-color: #d9d9d9;
 
    font-size: 13px;
-   color: ${props => props.theme.colors.text};
+   color: ${props => props.theme.colors.grey};
 
    padding-left: 11px;
 `

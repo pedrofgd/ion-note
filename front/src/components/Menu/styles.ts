@@ -14,19 +14,16 @@ export const Container = styled.div`
    padding: 11px;
 `
 
-export const MenuOption = styled.a<Props>`
+export const MenuOption = styled.a`
    font-size: 16px;
    padding: 0 12px;
-
-   text-decoration: ${(props) => (props.isActive ? 'underline' : 'none')};
-   color: ${props => props.theme.colors.black};
 `
 
-export const NotesIcon = styled(Notes)`
+export const NotesIcon = styled(Notes)<Props>`
    width: 22px;
    height: 22px;
 
-   color: ${props => props.theme.colors.black};
+   color: ${(props) => (props.isActive ? props.theme.colors.grey : props.theme.colors.black)};
 
    transition: 10ms;
 
@@ -35,11 +32,11 @@ export const NotesIcon = styled(Notes)`
    }
 `
 
-export const CalendarIcon = styled(Event)`
+export const CalendarIcon = styled(Event)<Props>`
    width: 22px;
    height: 22px;
 
-   color: ${props => props.theme.colors.black};
+   color: ${(props) => (props.isActive ? props.theme.colors.grey : props.theme.colors.black)};
 
    transition: 10ms;
 
@@ -48,11 +45,11 @@ export const CalendarIcon = styled(Event)`
    }
 `
 
-export const TasksIcon = styled(Checklist)`
+export const TasksIcon = styled(Checklist)<Props>`
    width: 20px;
    height: 20px;
 
-   color: ${props => props.theme.colors.black};
+   color: ${(props) => (props.isActive ? props.theme.colors.grey : props.theme.colors.black)};
 
    transition: 10ms;
 
