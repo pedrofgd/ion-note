@@ -5,6 +5,8 @@ import { Checklist } from 'styled-icons/octicons'
 import { Props } from '.'
 
 export const Container = styled.div`
+   grid-area: MN;
+
    display: flex;
    justify-content: center;
    align-items: center;
@@ -26,7 +28,7 @@ export const NotesIcon = styled(Notes)`
 
    color: ${props => props.theme.colors.black};
 
-   transition: 0.2s;
+   transition: 10ms;
 
    :hover {
       opacity: 0.7;
@@ -39,7 +41,7 @@ export const CalendarIcon = styled(Event)`
 
    color: ${props => props.theme.colors.black};
 
-   transition: 0.2s;
+   transition: 10ms;
 
    :hover {
       opacity: 0.7;
@@ -52,7 +54,7 @@ export const TasksIcon = styled(Checklist)`
 
    color: ${props => props.theme.colors.black};
 
-   transition: 0.2s;
+   transition: 10ms;
 
    :hover {
       opacity: 0.7;

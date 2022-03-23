@@ -17,7 +17,7 @@ export const Container = styled.div<Props>`
       'TL TL'
       'DE DT';
 
-   padding-bottom: 60px;
+   padding-bottom: 45px;
 
    &::before {
       width: 9px;
@@ -38,11 +38,11 @@ export const Container = styled.div<Props>`
 export const Title = styled.a`
    grid-area: TL;
    
-   font-size: 26px;
+   font-size: 20px;
    font-weight: 700;
 
    max-width: 250px;
-   padding-bottom: 11px;
+   padding-bottom: 7px;
    text-decoration: none;
    color: ${props => props.theme.colors.text};
    transition: 0.2s;
@@ -55,7 +55,7 @@ export const Title = styled.a`
 export const Description = styled.span`
    grid-area: DE;
 
-   font-size: 16px;
+   font-size: 15px;
    color: ${props => props.theme.colors.grey};
 
    max-width: 250px;
