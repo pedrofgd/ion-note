@@ -11,7 +11,7 @@ const ListNotes: React.FC = () => {
 
          <Button text="+ new note" />
          {/* <Separator /> */}
-         <NoteItem title="note 1" description="description about yesterday class, that was pretty difficult" date="22/03/2022" />
+         <NoteItem isActive={true} title="note 1" description="description about yesterday class, that was pretty difficult" date="22/03/2022" />
          <NoteItem title="TG 06N - grafos hamiltonianos" description="description 1" date="22/03/2022" />
          <NoteItem title="compiladores 06N - análise léxica" description="Aula 03 - Mini analisador léxico" date="22/03/2022" />
          <NoteItem title="compiladores 06N - análise léxica" description="Aula 03 - Mini analisador léxico" date="22/03/2022" />
