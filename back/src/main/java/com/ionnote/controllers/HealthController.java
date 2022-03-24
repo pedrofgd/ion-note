@@ -18,7 +18,7 @@ public class HealthController {
     private HealthService healthService;
 
     @GetMapping
-    public ResponseEntity<HashMap<String,String>> healthCheck(){
+    public ResponseEntity<HashMap<String, String>> healthCheck() {
         return new ResponseEntity<>(healthService.check(), HttpStatus.OK);
     }
 }
