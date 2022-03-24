@@ -7,15 +7,22 @@ export const Container = styled.button`
    flex-shrink: 0;
 
    width: 100%;
-   height: 40px;
+   height: 45px;
    border-radius: 5px;
    background-color: ${props => props.theme.colors.button};
-   border: 1px solid;
+   border: none;
 
    position: relative;
    cursor: pointer;
+   transition: 0.3s;
 
    margin-bottom: 40px;
+
+   :hover {
+      background-color: ${props => props.theme.colors.buttonOpacity}; 
+      color: ${props => props.theme.colors.black}
+
+   }
 `
 
 export const Text = styled.span`

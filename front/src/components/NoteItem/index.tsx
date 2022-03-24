@@ -5,16 +5,22 @@ export interface Props {
    title: string;
    description: string;
    date: string;
+   isActive?: boolean;
 }
 
 const NoteItem: React.FC<Props> = ({
    title,
    description,
-   date
+   date,
+   isActive
 }) => {
    return (
-      <Container>
-         <Title>{title}</Title>
+      <Container 
+         title={title}
+         description={description}
+         date={date}
+         isActive={isActive}>
+         <Title href="">{title}</Title>
          <Description>{description}</Description>
          <CreationDate>{date}</CreationDate>
       </Container>

@@ -1,12 +1,21 @@
 import React from 'react'
-import QuillEditor from './QuillEditor'
+import dynamic from 'next/dynamic'
 
-import { Container } from './styles'
+import QuillEditor from './QuillEditor'
+import ListTasks from "../ListTasks";
+
+import { Area, Container } from './styles'
+
+const EditorJs = dynamic(() => import("./EditorJs"),{ ssr: false });
 
 const Editor: React.FC = () => {
    return (
       <Container>
-         <QuillEditor />
+         <Area>
+            <EditorJs />
+            {/* <QuillEditor /> */}
+         </Area>
+         <ListTasks />
       </Container>
    )
 }

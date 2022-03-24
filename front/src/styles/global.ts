@@ -19,12 +19,6 @@ export default createGlobalStyle`
     margin-top: 40px;
   }
 
-  p {
-    margin-top: 24px;
-    font-size: 24px;
-    line-height: 32px;
-  }
-
   ::-webkit-scrollbar {
     display: none;
   }

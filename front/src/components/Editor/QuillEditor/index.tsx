@@ -10,7 +10,7 @@ const modules = {
   toolbar: [
     [{ header: '1' }, { header: '2' }, { font: [] }],
     [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block'],
     [
       { list: 'ordered' },
       { list: 'bullet' },
@@ -47,6 +47,6 @@ export default function QuillEditor() {
     modules={modules} 
     formats={formats} 
     theme="snow"
-    style={{height:'96vh'}}
+    style={{height:'90vh', width:'100%'}}
   />
 }

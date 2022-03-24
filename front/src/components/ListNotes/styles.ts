@@ -7,10 +7,10 @@ export const Container = styled.div`
    flex-direction: column;
    align-items: center;
    
-   background-color: ${props => props.theme.colors.backSecoundary};
+   background-color: ${props => props.theme.colors.background};
    border-left: 1px solid;
    border-left-color: #D9D9D9;
-   padding: 60px 15px;
+   padding: 30px 15px;
 
    max-height: 100vh;
    overflow-y: scroll;
