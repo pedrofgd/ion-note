@@ -13,6 +13,7 @@ const Menu: React.FC<Props> = ({
       <Container>
          <MenuOption href=""><NotesIcon isActive={true} /></MenuOption>
          <MenuOption href=""><CalendarIcon /></MenuOption>
+         {/* TODO toggle do botão de tarefas */}
          <MenuOption href=""><TasksIcon /></MenuOption>
       </Container>
    )

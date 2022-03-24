@@ -19,6 +19,7 @@ import Hyperlink from "editorjs-hyperlink";
 import ChangeCase from "editorjs-change-case";
 
 export const tools: EditorTools = {
+  // TODO adicionar marker (grifar o texto)
   paragraph: {
     class: Paragraph,
     inlineToolbar: true,
@@ -64,7 +65,7 @@ export const tools: EditorTools = {
     class: Image,
     config: {
       endpoints: {
-        // TODO: https://github.com/editor-js/image
+        // https://github.com/editor-js/image
         byFile: "http://localhost:8008/uploadFile", // Your backend file uploader endpoint
         byUrl: "http://localhost:8008/fetchUrl", // Your endpoint that provides uploading by Url
         captionPlaceholder: "describe your image",
@@ -74,7 +75,7 @@ export const tools: EditorTools = {
   link: {
     class: Link,
     config: {
-      // TODO: https://github.com/editor-js/link
+      // https://github.com/editor-js/link
       endpoint: "http://localhost:8008/fetchUrl", // Your backend endpoint for url data fetching,
     },
     tunes: [],
@@ -82,7 +83,7 @@ export const tools: EditorTools = {
   attachment: {
     class: Attachment,
     config: {
-      // TODO: https://github.com/editor-js/attaches
+      // https://github.com/editor-js/attaches
       endpoint: "http://localhost:8008/uploadFile",
     },
     tunes: [],

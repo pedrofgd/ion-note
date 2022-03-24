@@ -8,12 +8,12 @@ import styled from 'styled-components'
 
 export const Grid = styled.div`
   display: grid;
-
+  
   grid-template-columns: auto 350px;
   grid-template-rows: 60px auto 30px;
 
   grid-template-areas:
-    'H CF'
+    'H  CF'
     'MV SV'
     'IF SV';
 
