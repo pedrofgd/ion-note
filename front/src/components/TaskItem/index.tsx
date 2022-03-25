@@ -19,7 +19,7 @@ const TaskItem: React.FC<Props> = ({
          completed={completed}
       >
          <CheckItem />
-
+         
          <TaskArea>
             {/* TODO marcar tarefa como completed, alterar o ícone e enviar para a outra lista */}
             <Title task={task} date={date} completed={completed}>{task}</Title>
