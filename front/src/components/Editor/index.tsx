@@ -15,7 +15,9 @@ const Editor: React.FC = () => {
             <EditorJs />
             {/* <QuillEditor /> */}
          </Area>
-         <ListTasks />
+
+         {/* TODO passar ListTasks para o Layout e ajustar CSS para ficar na mesma posicao */}
+         {/* <ListTasks />  */}
       </Container>
    )
 }

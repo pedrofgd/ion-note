@@ -5,12 +5,22 @@ import Editor from "../Editor";
 import ListNotes from "../ListNotes";
 import InfoBar from "../InfoBar";
 
+import { useMenu } from "../../context/Menu";
+import Calendar from "../Calendar";
+
 const Layout: React.FC = () => {
+   const { option } = useMenu();
+
    return (
       <Grid>
          <Header />
          <Configurations />
-         <Editor />
+
+         {option === "editor" 
+            ? <Editor />
+            : <Calendar />
+         }
+         
          <ListNotes />
          <InfoBar />
       </Grid>
