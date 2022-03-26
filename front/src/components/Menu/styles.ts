@@ -28,7 +28,7 @@ export const NotesIcon = styled(Notes)<Props>`
    transition: 10ms;
 
    :hover {
-      opacity: 0.7;
+      opacity: 0.5;
    }
 `
 
@@ -41,7 +41,7 @@ export const CalendarIcon = styled(Event)<Props>`
    transition: 10ms;
 
    :hover {
-      opacity: 0.7;
+      opacity: 0.5;
    }
 `
 
@@ -54,6 +54,6 @@ export const TasksIcon = styled(Checklist)<Props>`
    transition: 10ms;
 
    :hover {
-      opacity: 0.7;
+      opacity: 0.5;
    }
 `

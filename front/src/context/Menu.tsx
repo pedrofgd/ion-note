@@ -9,11 +9,14 @@ export type Props = {
 export default function MenuProvider(props: Props) {
    const { children } = props;
    const [option, setOption] = useState("editor");
+   const [showTasks, setShowTasks] = useState(false);
 
    return (
       <MenuContext.Provider value={{
          option, 
-         setOption
+         setOption,
+         showTasks,
+         setShowTasks
       }}>
          {children}
       </MenuContext.Provider>
@@ -22,6 +25,6 @@ export default function MenuProvider(props: Props) {
 
 export function useMenu() {
    const context = useContext(MenuContext);
-   const { option, setOption } = context;
-   return { option, setOption };
+   const { option, setOption, showTasks, setShowTasks } = context;
+   return { option, setOption, showTasks, setShowTasks };
 }
