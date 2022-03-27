@@ -33,13 +33,7 @@ public class EventService {
 
     //Read
     public Event readEvent(ReadEventDTO dto) throws EventNotFoundException {
-        var optionalEvent = eventRepository.findById(dto.getUuid());
-
-        if (optionalEvent.isEmpty()) {
-            throw new EventNotFoundException();
-        }
-
-        return optionalEvent.get();
+        return eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
     }
 
     public List<Event> readAllEvents() {
@@ -48,26 +42,14 @@ public class EventService {
 
     //Update
     public void updateEvent(UpdateEventDTO dto) throws EventNotFoundException {
-        var optionalEvent = eventRepository.findById(dto.getUuid());
-
-        if (optionalEvent.isEmpty()) {
-            throw new EventNotFoundException();
-        }
-
-        var event = optionalEvent.get();
+        var event = eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
         BeanUtils.copyProperties(dto, event);
         eventRepository.save(event);
     }
 
     //Delete
     public void deleteEvent(DeleteEventDTO dto) throws EventNotFoundException {
-        var optionalEvent = eventRepository.findById(dto.getUuid());
-
-        if (optionalEvent.isEmpty()) {
-            throw new EventNotFoundException();
-        }
-
-        var event = optionalEvent.get();
+        var event = eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
         eventRepository.delete(event);
     }
 

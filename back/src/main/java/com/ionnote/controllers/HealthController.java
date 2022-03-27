@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -18,7 +18,7 @@ public class HealthController {
     private HealthService healthService;
 
     @GetMapping
-    public ResponseEntity<HashMap<String, String>> healthCheck() {
+    public ResponseEntity<Map<String, String>> healthCheck() {
         return new ResponseEntity<>(healthService.check(), HttpStatus.OK);
     }
 }
