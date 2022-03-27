@@ -19,6 +19,7 @@ const Editor: React.FC = () => {
             {/* <QuillEditor /> */}
          </Area>
 
+         {/* TODO Repassar isso para o layout e posicionar o elemento corretamente com CSS */}
          {showTasks == true ? <ListTasks /> : <></>}
       </Container>
    )

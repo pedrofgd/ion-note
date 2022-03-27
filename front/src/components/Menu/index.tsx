@@ -24,7 +24,6 @@ const Menu: React.FC<Props> = ({
             <CalendarIcon isActive={option === "calendar" ? true : false} />
          </MenuOption>
 
-         {/* TODO toggle do botão de tarefas */}
          <MenuOption onClick={() => {setShowTasks(showTasks == true ? false : true)}}>
             <TasksIcon />
          </MenuOption>
