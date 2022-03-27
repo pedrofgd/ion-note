@@ -36,13 +36,7 @@ public class NoteService {
 
     //Read
     public Note readNote(ReadNoteDTO dto) throws NoteNotFoundException {
-        var optionalNote = noteRepository.findById(dto.getUuid());
-
-        if (optionalNote.isEmpty()) {
-            throw new NoteNotFoundException();
-        }
-
-        return optionalNote.get();
+        return noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
     }
 
     public List<Note> readAllNotes() {
@@ -51,26 +45,14 @@ public class NoteService {
 
     //Update
     public void updateNote(UpdateNoteDTO dto) throws NoteNotFoundException {
-        var optionalNote = noteRepository.findById(dto.getUuid());
-
-        if (optionalNote.isEmpty()) {
-            throw new NoteNotFoundException();
-        }
-
-        var note = optionalNote.get();
+        var note = noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
         BeanUtils.copyProperties(dto, note);
         noteRepository.save(note);
     }
 
     //Delete
     public void deleteNote(DeleteNoteDTO dto) throws NoteNotFoundException {
-        var optionalNote = noteRepository.findById(dto.getUuid());
-
-        if (optionalNote.isEmpty()) {
-            throw new NoteNotFoundException();
-        }
-
-        var note = optionalNote.get();
+        var note = noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
         noteRepository.delete(note);
     }
 }

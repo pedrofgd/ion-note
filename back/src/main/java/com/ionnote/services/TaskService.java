@@ -33,13 +33,7 @@ public class TaskService {
 
     //Read
     public Task readTask(ReadTaskDTO dto) throws TaskNotFoundException {
-        var optionalTask = taskRepository.findById(dto.getUuid());
-
-        if (optionalTask.isEmpty()) {
-            throw new TaskNotFoundException();
-        }
-
-        return optionalTask.get();
+        return taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
     }
 
     public List<Task> readAllTasks() {
@@ -48,26 +42,14 @@ public class TaskService {
 
     //Update
     public void updateTask(UpdateTaskDTO dto) throws TaskNotFoundException {
-        var optionalTask = taskRepository.findById(dto.getUuid());
-
-        if (optionalTask.isEmpty()) {
-            throw new TaskNotFoundException();
-        }
-
-        var task = optionalTask.get();
+        var task = taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
         BeanUtils.copyProperties(dto, task);
         taskRepository.save(task);
     }
 
     //Delete
     public void deleteTask(DeleteTaskDTO dto) throws TaskNotFoundException {
-        var optionalTask = taskRepository.findById(dto.getUuid());
-
-        if (optionalTask.isEmpty()) {
-            throw new TaskNotFoundException();
-        }
-
-        var task = optionalTask.get();
+        var task = taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
         taskRepository.delete(task);
     }
 
