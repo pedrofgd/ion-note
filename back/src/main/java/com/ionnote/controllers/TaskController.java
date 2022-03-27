@@ -1,5 +1,6 @@
 package com.ionnote.controllers;
 
+import com.ionnote.constants.ResponseConstants;
 import com.ionnote.dtos.ResponseDTO;
 import com.ionnote.dtos.task.CreateTaskDTO;
 import com.ionnote.dtos.task.DeleteTaskDTO;
@@ -18,10 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("task")
 @AllArgsConstructor
 public class TaskController {
-    private static final String SUCCESS = "SUCCESS";
-    private static final String TASK_NOT_FOUND = "TASK NOT FOUND";
-    private static final String UNKNOWN_ERROR = "UNKNOWN ERROR";
-
 
     private TaskService taskService;
 
@@ -30,7 +27,7 @@ public class TaskController {
         var response = new ResponseDTO();
         try {
             taskService.createTask(dto);
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (Exception e) {
@@ -46,13 +43,13 @@ public class TaskController {
         var response = new ResponseDTO();
         try {
             response.setData(taskService.readTask(dto));
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (TaskNotFoundException e){
-            log.error("READ TASK OPERATION FAILED ({})::{}",TASK_NOT_FOUND,dto.getUuid());
+            log.error("READ TASK OPERATION FAILED ({})::{}", ResponseConstants.TASK_NOT_FOUND.getMessage(),dto.getUuid());
             e.printStackTrace();
-            response.setMessage(TASK_NOT_FOUND);
+            response.setMessage(ResponseConstants.TASK_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
@@ -68,13 +65,13 @@ public class TaskController {
         var response = new ResponseDTO();
         try {
             taskService.updateTask(dto);
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (TaskNotFoundException e){
-            log.error("UPDATE TASK OPERATION FAILED ({})::{}",TASK_NOT_FOUND,dto.getUuid());
+            log.error("UPDATE TASK OPERATION FAILED ({})::{}", ResponseConstants.TASK_NOT_FOUND.getMessage(),dto.getUuid());
             e.printStackTrace();
-            response.setMessage(TASK_NOT_FOUND);
+            response.setMessage(ResponseConstants.TASK_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
@@ -90,13 +87,13 @@ public class TaskController {
         var response = new ResponseDTO();
         try {
             taskService.deleteTask(dto);
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (TaskNotFoundException e){
-            log.error("DELETE TASK OPERATION FAILED ({})::{}",TASK_NOT_FOUND,dto.getUuid());
+            log.error("DELETE TASK OPERATION FAILED ({})::{}", ResponseConstants.TASK_NOT_FOUND.getMessage(),dto.getUuid());
             e.printStackTrace();
-            response.setMessage(TASK_NOT_FOUND);
+            response.setMessage(ResponseConstants.TASK_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
@@ -117,7 +114,7 @@ public class TaskController {
         catch (Exception e){
             log.error("GET ALL TASKS OPERATION FAILED");
             e.printStackTrace();
-            response.setMessage(UNKNOWN_ERROR);
+            response.setMessage(ResponseConstants.UNKNOWN_ERROR.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }

@@ -1,5 +1,6 @@
 package com.ionnote.controllers;
 
+import com.ionnote.constants.ResponseConstants;
 import com.ionnote.dtos.ResponseDTO;
 import com.ionnote.dtos.note.CreateNoteDTO;
 import com.ionnote.dtos.note.DeleteNoteDTO;
@@ -18,10 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("note")
 @AllArgsConstructor
 public class NoteController {
-        private static final String SUCCESS = "SUCCESS";
-        private static final String NOTE_NOT_FOUND = "NOTE NOT FOUND";
-        private static final String UNKNOWN_ERROR = "UNKNOWN ERROR";
-
 
         private NoteService noteService;
 
@@ -30,7 +27,7 @@ public class NoteController {
             var response = new ResponseDTO();
             try {
                 noteService.createNote(dto);
-                response.setMessage(SUCCESS);
+                response.setMessage(ResponseConstants.SUCCESS.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.OK);
             }
             catch (Exception e) {
@@ -46,13 +43,13 @@ public class NoteController {
             var response = new ResponseDTO();
             try {
                 response.setData(noteService.readNote(dto));
-                response.setMessage(SUCCESS);
+                response.setMessage(ResponseConstants.SUCCESS.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.OK);
             }
             catch (NoteNotFoundException e){
-                log.error("READ NOTE OPERATION FAILED ({})::{}",NOTE_NOT_FOUND,dto.getUuid());
+                log.error("READ NOTE OPERATION FAILED ({})::{}", ResponseConstants.NOTE_NOT_FOUND.getMessage(),dto.getUuid());
                 e.printStackTrace();
-                response.setMessage(NOTE_NOT_FOUND);
+                response.setMessage(ResponseConstants.NOTE_NOT_FOUND.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
             }
             catch (Exception e) {
@@ -68,13 +65,13 @@ public class NoteController {
             var response = new ResponseDTO();
             try {
                 noteService.updateNote(dto);
-                response.setMessage(SUCCESS);
+                response.setMessage(ResponseConstants.SUCCESS.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.OK);
             }
             catch (NoteNotFoundException e){
-                log.error("UPDATE NOTE OPERATION FAILED ({})::{}",NOTE_NOT_FOUND,dto.getUuid());
+                log.error("UPDATE NOTE OPERATION FAILED ({})::{}", ResponseConstants.NOTE_NOT_FOUND.getMessage(),dto.getUuid());
                 e.printStackTrace();
-                response.setMessage(NOTE_NOT_FOUND);
+                response.setMessage(ResponseConstants.NOTE_NOT_FOUND.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
             }
             catch (Exception e) {
@@ -90,13 +87,13 @@ public class NoteController {
             var response = new ResponseDTO();
             try {
                 noteService.deleteNote(dto);
-                response.setMessage(SUCCESS);
+                response.setMessage(ResponseConstants.SUCCESS.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.OK);
             }
             catch (NoteNotFoundException e){
-                log.error("DELETE NOTE OPERATION FAILED ({})::{}",NOTE_NOT_FOUND,dto.getUuid());
+                log.error("DELETE NOTE OPERATION FAILED ({})::{}", ResponseConstants.NOTE_NOT_FOUND.getMessage(),dto.getUuid());
                 e.printStackTrace();
-                response.setMessage(NOTE_NOT_FOUND);
+                response.setMessage(ResponseConstants.NOTE_NOT_FOUND.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
             }
             catch (Exception e) {
@@ -117,7 +114,7 @@ public class NoteController {
             catch (Exception e){
                 log.error("GET ALL NOTES OPERATION FAILED");
                 e.printStackTrace();
-                response.setMessage(UNKNOWN_ERROR);
+                response.setMessage(ResponseConstants.UNKNOWN_ERROR.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
             }
         }

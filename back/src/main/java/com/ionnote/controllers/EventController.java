@@ -1,5 +1,6 @@
 package com.ionnote.controllers;
 
+import com.ionnote.constants.ResponseConstants;
 import com.ionnote.dtos.ResponseDTO;
 import com.ionnote.dtos.event.CreateEventDTO;
 import com.ionnote.dtos.event.DeleteEventDTO;
@@ -18,11 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("event")
 @AllArgsConstructor
 public class EventController {
-    private static final String SUCCESS = "SUCCESS";
-    private static final String TASK_NOT_FOUND = "EVENT NOT FOUND";
-    private static final String UNKNOWN_ERROR = "UNKNOWN ERROR";
-
-
     private EventService eventService;
 
     @PostMapping("create")
@@ -30,7 +26,7 @@ public class EventController {
         var response = new ResponseDTO();
         try {
             eventService.createEvent(dto);
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (Exception e) {
@@ -46,13 +42,13 @@ public class EventController {
         var response = new ResponseDTO();
         try {
             response.setData(eventService.readEvent(dto));
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (EventNotFoundException e){
-            log.error("READ EVENT OPERATION FAILED ({})::{}",TASK_NOT_FOUND,dto.getUuid());
+            log.error("READ EVENT OPERATION FAILED ({})::{}", ResponseConstants.EVENT_NOT_FOUND.getMessage(),dto.getUuid());
             e.printStackTrace();
-            response.setMessage(TASK_NOT_FOUND);
+            response.setMessage(ResponseConstants.EVENT_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
@@ -68,13 +64,13 @@ public class EventController {
         var response = new ResponseDTO();
         try {
             eventService.updateEvent(dto);
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (EventNotFoundException e){
-            log.error("UPDATE EVENT OPERATION FAILED ({})::{}",TASK_NOT_FOUND,dto.getUuid());
+            log.error("UPDATE EVENT OPERATION FAILED ({})::{}", ResponseConstants.EVENT_NOT_FOUND.getMessage(),dto.getUuid());
             e.printStackTrace();
-            response.setMessage(TASK_NOT_FOUND);
+            response.setMessage(ResponseConstants.EVENT_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
@@ -90,13 +86,13 @@ public class EventController {
         var response = new ResponseDTO();
         try {
             eventService.deleteEvent(dto);
-            response.setMessage(SUCCESS);
+            response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
         catch (EventNotFoundException e){
-            log.error("DELETE EVENT OPERATION FAILED ({})::{}",TASK_NOT_FOUND,dto.getUuid());
+            log.error("DELETE EVENT OPERATION FAILED ({})::{}", ResponseConstants.EVENT_NOT_FOUND.getMessage(),dto.getUuid());
             e.printStackTrace();
-            response.setMessage(TASK_NOT_FOUND);
+            response.setMessage(ResponseConstants.EVENT_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
@@ -117,7 +113,7 @@ public class EventController {
         catch (Exception e){
             log.error("GET ALL EVENTS OPERATION FAILED");
             e.printStackTrace();
-            response.setMessage(UNKNOWN_ERROR);
+            response.setMessage(ResponseConstants.UNKNOWN_ERROR.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
