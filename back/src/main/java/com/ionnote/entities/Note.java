@@ -15,14 +15,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Note {
+    @Id
+    private UUID uuid;
 
     private String title;
     private String subtitle;
     private String description;
     private Object content;
-
-    @Id
-    private UUID uuid;
-
     private LocalDateTime createdAt;
 }

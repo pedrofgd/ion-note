@@ -14,10 +14,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Task {
-    private String name;
-
     @Id
     private UUID uuid;
+
+    private String name;
     private LocalDateTime deadline;
     private Boolean completed;
 
