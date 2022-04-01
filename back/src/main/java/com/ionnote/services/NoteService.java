@@ -1,9 +1,7 @@
 package com.ionnote.services;
 
-import com.ionnote.dtos.note.CreateNoteDTO;
-import com.ionnote.dtos.note.DeleteNoteDTO;
-import com.ionnote.dtos.note.ReadNoteDTO;
-import com.ionnote.dtos.note.UpdateNoteDTO;
+import com.ionnote.dtos.note.*;
+import com.ionnote.dtos.note.NoteDTO;
 import com.ionnote.entities.Note;
 import com.ionnote.exceptions.NoteNotFoundException;
 import com.ionnote.repositories.NoteRepository;
@@ -35,12 +33,20 @@ public class NoteService {
     }
 
     //Read
-    public Note readNote(ReadNoteDTO dto) throws NoteNotFoundException {
-        return noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
+    public NoteDTO readNote(ReadNoteDTO dto) throws NoteNotFoundException {
+        var note = noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
+        var response = new NoteDTO();
+        BeanUtils.copyProperties(note,response);
+        return response;
     }
 
-    public List<Note> readAllNotes() {
-        return noteRepository.findAll();
+    public List<NoteDTO> readAllNotes() {
+        var notes = noteRepository.findAll();
+        return notes.stream().map(note -> {
+            var tempResponse = new NoteDTO();
+            BeanUtils.copyProperties(note,tempResponse);
+            return tempResponse;
+        }).toList();
     }
 
     //Update

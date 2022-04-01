@@ -1,9 +1,7 @@
 package com.ionnote.services;
 
-import com.ionnote.dtos.event.CreateEventDTO;
-import com.ionnote.dtos.event.DeleteEventDTO;
-import com.ionnote.dtos.event.ReadEventDTO;
-import com.ionnote.dtos.event.UpdateEventDTO;
+import com.ionnote.dtos.event.*;
+import com.ionnote.dtos.event.EventDTO;
 import com.ionnote.entities.Event;
 import com.ionnote.exceptions.EventNotFoundException;
 import com.ionnote.repositories.EventRepository;
@@ -32,12 +30,20 @@ public class EventService {
     }
 
     //Read
-    public Event readEvent(ReadEventDTO dto) throws EventNotFoundException {
-        return eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
+    public EventDTO readEvent(ReadEventDTO dto) throws EventNotFoundException {
+        var event = eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
+        var response = new EventDTO();
+        BeanUtils.copyProperties(event,response);
+        return response;
     }
 
-    public List<Event> readAllEvents() {
-        return eventRepository.findAll();
+    public List<EventDTO> readAllEvents() {
+        var tasks = eventRepository.findAll();
+        return tasks.stream().map(event -> {
+            var tempResponse = new EventDTO();
+            BeanUtils.copyProperties(event,tempResponse);
+            return tempResponse;
+        }).toList();
     }
 
     //Update

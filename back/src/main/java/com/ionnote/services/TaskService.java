@@ -1,9 +1,6 @@
 package com.ionnote.services;
 
-import com.ionnote.dtos.task.CreateTaskDTO;
-import com.ionnote.dtos.task.DeleteTaskDTO;
-import com.ionnote.dtos.task.ReadTaskDTO;
-import com.ionnote.dtos.task.UpdateTaskDTO;
+import com.ionnote.dtos.task.*;
 import com.ionnote.entities.Task;
 import com.ionnote.exceptions.TaskNotFoundException;
 import com.ionnote.repositories.TaskRepository;
@@ -32,12 +29,20 @@ public class TaskService {
     }
 
     //Read
-    public Task readTask(ReadTaskDTO dto) throws TaskNotFoundException {
-        return taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
+    public TaskDTO readTask(ReadTaskDTO dto) throws TaskNotFoundException {
+        var task = taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
+        var response = new TaskDTO();
+        BeanUtils.copyProperties(task,response);
+        return response;
     }
 
-    public List<Task> readAllTasks() {
-        return taskRepository.findAll();
+    public List<TaskDTO> readAllTasks() {
+        var tasks = taskRepository.findAll();
+        return tasks.stream().map(task -> {
+            var tempResponse = new TaskDTO();
+            BeanUtils.copyProperties(task,tempResponse);
+            return tempResponse;
+        }).toList();
     }
 
     //Update
