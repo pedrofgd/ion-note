@@ -5,6 +5,8 @@ import com.ionnote.dtos.user.GetUserDTO;
 import com.ionnote.entities.User;
 import com.ionnote.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,14 +16,14 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserService {
     private UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void createUser(CreateUserDTO dto) {
         var tempUser = User.builder()
-                .id(UUID.randomUUID())
+                .id(UUID.randomUUID().toString())
                 .name(dto.getName())
                 .email(dto.getEmail())
-                .token(dto.getPassword())
-                .salt(UUID.randomUUID())
+                .password(bCryptPasswordEncoder.encode(dto.getPassword()))
                 .build();
 
         userRepository.save(tempUser);
