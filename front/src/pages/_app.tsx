@@ -1,10 +1,11 @@
 import React from 'react'
 import { AppProps } from 'next/app'
-import { ThemeProvider } from 'styled-components'
 
+import '../styles/index.css'
+
+import { ThemeProvider } from 'styled-components'
 import GlobalStyle from '../styles/global'
 import theme from '../styles/theme'
-import 'react-quill/dist/quill.snow.css'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (

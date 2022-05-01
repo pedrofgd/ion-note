@@ -5,10 +5,13 @@ import QuillEditor from './QuillEditor'
 import ListTasks from "../ListTasks";
 
 import { Area, Container } from './styles'
+import { useMenu } from '../../context/Menu';
 
 const EditorJs = dynamic(() => import("./EditorJs"),{ ssr: false });
 
 const Editor: React.FC = () => {
+   const { showTasks } = useMenu();
+
    return (
       <Container>
          <Area>
@@ -16,8 +19,8 @@ const Editor: React.FC = () => {
             {/* <QuillEditor /> */}
          </Area>
 
-         {/* TODO passar ListTasks para o Layout e ajustar CSS para ficar na mesma posicao */}
-         {/* <ListTasks />  */}
+         {/* TODO Repassar isso para o layout e posicionar o elemento corretamente com CSS */}
+         {showTasks == true ? <ListTasks /> : <></>}
       </Container>
    )
 }

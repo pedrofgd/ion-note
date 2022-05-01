@@ -17,6 +17,8 @@ export const Container = styled.div`
 export const MenuOption = styled.a`
    font-size: 16px;
    padding: 0 12px;
+
+   cursor: pointer;
 `
 
 export const NotesIcon = styled(Notes)<Props>`
@@ -28,7 +30,7 @@ export const NotesIcon = styled(Notes)<Props>`
    transition: 10ms;
 
    :hover {
-      opacity: 0.7;
+      opacity: 0.5;
    }
 `
 
@@ -41,7 +43,7 @@ export const CalendarIcon = styled(Event)<Props>`
    transition: 10ms;
 
    :hover {
-      opacity: 0.7;
+      opacity: 0.5;
    }
 `
 
@@ -54,6 +56,6 @@ export const TasksIcon = styled(Checklist)<Props>`
    transition: 10ms;
 
    :hover {
-      opacity: 0.7;
+      opacity: 0.5;
    }
 `

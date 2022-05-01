@@ -41,7 +41,6 @@ const EditorJs: React.FC = () => {
     initEditor();
   }, []);
 
-
   return <div id={"editor"}></div>;
 };
 

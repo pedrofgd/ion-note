@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-   grid-area: LT;
-
    position: absolute;
    top: 3.5px;
    right: 3.5px;
