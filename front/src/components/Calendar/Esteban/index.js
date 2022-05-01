@@ -1,13 +1,13 @@
-import React, { useState, useContext, useEffect } from "react";
-//import "./styles";
-import { getMonth } from "./../../../utils/calendar";
-import CalendarHeader from "./components/CalendarHeader";
-import Sidebar from "./components/Sidebar";
+import React, { useState, useContext, useEffect } from 'react';
+
+import { getMonth } from "./util";
+
 import Month from "./components/Month";
-import GlobalContext from "./../../../context/GlobalContext";
+import GlobalContext from "./context/GlobalContext";
 import EventModal from "./components/EventModal";
+
 function EstebanCalendar() {
-  const [currenMonth, setCurrentMonth] = useState([new Date(2022, 0o3, 27)]);
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
   const { monthIndex, showEventModal } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -15,14 +15,12 @@ function EstebanCalendar() {
   }, [monthIndex]);
 
   return (
-    <React.Fragment>
+    <React.Fragment className="App">
       {showEventModal && <EventModal />}
 
       <div className="h-screen flex flex-col">
-        <CalendarHeader />
         <div className="flex flex-1">
-          <Sidebar />
-          <Month month={currenMonth} />
+          <Month month={currentMonth} />
         </div>
       </div>
     </React.Fragment>

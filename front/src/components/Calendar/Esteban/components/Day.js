@@ -1,6 +1,7 @@
+import React, { useContext, useState, useEffect } from 'react';
+import GlobalContext from "../context/GlobalContext";
+
 import dayjs from "dayjs";
-import React, { useContext, useState, useEffect } from "react";
-import GlobalContext from "./../../../../context/GlobalContext";
 
 export default function Day({ day, rowIdx }) {
   const [dayEvents, setDayEvents] = useState([]);
@@ -12,11 +13,12 @@ export default function Day({ day, rowIdx }) {
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    const events = filteredEvents.filter(
-      (evt) =>
-        dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
-    );
-    setDayEvents(events);
+    // TODO
+    // const events = filteredEvents.filter(
+    //   (evt) =>
+    //     dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
+    // );
+    // setDayEvents(events);
   }, [filteredEvents, day]);
 
   function getCurrentDayClass() {
@@ -24,20 +26,26 @@ export default function Day({ day, rowIdx }) {
       ? "bg-blue-600 text-white rounded-full w-7"
       : "";
   }
+  
   return (
     <div className="border border-gray-200 flex flex-col">
       <header className="flex flex-col items-center">
+        {/* SUN, MON... no topo da primeira linha */}
         {rowIdx === 0 && (
           <p className="text-sm mt-1">
             {day.format("ddd").toUpperCase()}
           </p>
         )}
+
+        {/* 01, 02, 03... dia do mes */}
         <p
-          className={`text-sm p-1 my-1 text-center  ${getCurrentDayClass()}`}
+          className={`text-sm p-1 my-1 text-center  
+          ${getCurrentDayClass()}`}
         >
           {day.format("DD")}
         </p>
       </header>
+      
       <div
         className="flex-1 cursor-pointer"
         onClick={() => {
@@ -56,5 +64,6 @@ export default function Day({ day, rowIdx }) {
         ))}
       </div>
     </div>
+    
   );
 }
