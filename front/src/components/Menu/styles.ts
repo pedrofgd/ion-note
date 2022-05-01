@@ -17,6 +17,8 @@ export const Container = styled.div`
 export const MenuOption = styled.a`
    font-size: 16px;
    padding: 0 12px;
+
+   cursor: pointer;
 `
 
 export const NotesIcon = styled(Notes)<Props>`

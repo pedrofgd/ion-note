@@ -13,12 +13,12 @@ export default function Day({ day, rowIdx }) {
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    // TODO
-    // const events = filteredEvents.filter(
-    //   (evt) =>
-    //     dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
-    // );
-    // setDayEvents(events);
+    // TODO ajustar local storage
+    const events = filteredEvents.filter(
+      (evt) =>
+        dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
+    );
+    setDayEvents(events);
   }, [filteredEvents, day]);
 
   function getCurrentDayClass() {
@@ -32,20 +32,21 @@ export default function Day({ day, rowIdx }) {
       <header className="flex flex-col items-center">
         {/* SUN, MON... no topo da primeira linha */}
         {rowIdx === 0 && (
-          <p className="text-sm mt-1">
+          <p className="text-xs mt-1">
             {day.format("ddd").toUpperCase()}
           </p>
         )}
 
         {/* 01, 02, 03... dia do mes */}
         <p
-          className={`text-sm p-1 my-1 text-center  
+          className={`text-xs p-1 my-1 text-center  
           ${getCurrentDayClass()}`}
         >
           {day.format("DD")}
         </p>
       </header>
       
+      {/* Area dos eventos (separado do dia) */}
       <div
         className="flex-1 cursor-pointer"
         onClick={() => {

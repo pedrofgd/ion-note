@@ -23,10 +23,12 @@ function savedEventsReducer(state, { type, payload }) {
   }
 }
 function initEvents() {
-  // TODO
-  // const storageEvents = localStorage.getItem("savedEvents");
-  // const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
-  // return parsedEvents;
+  // TODO ajustar local storage
+  if (typeof window !== "undefined") {
+    const storageEvents = localStorage.getItem("savedEvents");
+    const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
+    return parsedEvents;
+  }
 }
 
 export default function ContextWrapper(props) {
@@ -43,32 +45,34 @@ export default function ContextWrapper(props) {
   );
 
   const filteredEvents = useMemo(() => {
-    // return savedEvents.filter((evt) =>
-    //   labels
-    //     .filter((lbl) => lbl.checked)
-    //     .map((lbl) => lbl.label)
-    //     .includes(evt.label)
-    // );
+    return savedEvents?.filter((evt) =>
+      labels
+        .filter((lbl) => lbl.checked)
+        .map((lbl) => lbl.label)
+        .includes(evt.label)
+    );
   }, [savedEvents, labels]);
 
-  // useEffect(() => {
-  //   localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
-  // }, [savedEvents]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+    }
+  }, [savedEvents]);
 
   useEffect(() => {
-    // setLabels((prevLabels) => {
-    //   return [...new Set(savedEvents.map((evt) => evt.label))].map(
-    //     (label) => {
-    //       const currentLabel = prevLabels.find(
-    //         (lbl) => lbl.label === label
-    //       );
-    //       return {
-    //         label,
-    //         checked: currentLabel ? currentLabel.checked : true,
-    //       };
-    //     }
-    //   );
-    // });
+    setLabels((prevLabels) => {
+      return [...new Set(savedEvents.map((evt) => evt.label))].map(
+        (label) => {
+          const currentLabel = prevLabels.find(
+            (lbl) => lbl.label === label
+          );
+          return {
+            label,
+            checked: currentLabel ? currentLabel.checked : true,
+          };
+        }
+      );
+    });
   }, [savedEvents]);
 
   useEffect(() => {

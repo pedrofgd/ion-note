@@ -21,9 +21,11 @@ export default function EventModal() {
   const [title, setTitle] = useState(
     selectedEvent ? selectedEvent.title : ""
   );
+
   const [description, setDescription] = useState(
     selectedEvent ? selectedEvent.description : ""
   );
+
   const [selectedLabel, setSelectedLabel] = useState(
     selectedEvent
       ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
@@ -32,6 +34,7 @@ export default function EventModal() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     const calendarEvent = {
       title,
       description,
@@ -39,6 +42,7 @@ export default function EventModal() {
       day: daySelected.valueOf(),
       id: selectedEvent ? selectedEvent.id : Date.now(),
     };
+
     if (selectedEvent) {
       dispatchCalEvent({ type: "update", payload: calendarEvent });
     } else {
@@ -47,6 +51,7 @@ export default function EventModal() {
 
     setShowEventModal(false);
   }
+  
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl w-1/4">
