@@ -7,6 +7,7 @@ import com.ionnote.dtos.task.DeleteTaskDTO;
 import com.ionnote.dtos.task.ReadTaskDTO;
 import com.ionnote.dtos.task.UpdateTaskDTO;
 import com.ionnote.exceptions.TaskNotFoundException;
+import com.ionnote.services.AuthService;
 import com.ionnote.services.TaskService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class TaskController {
 
     private TaskService taskService;
+    private AuthService authService;
 
     @PostMapping("create")
     public ResponseEntity<ResponseDTO> createTask(@RequestBody CreateTaskDTO dto){
@@ -108,6 +110,7 @@ public class TaskController {
     public ResponseEntity<ResponseDTO> readAllTasks(){
         var response = new ResponseDTO();
         try {
+            log.info(authService.getLoggedUser().getId());
             response.setData(taskService.readAllTasks());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
