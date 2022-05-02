@@ -7,17 +7,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JwtUtil implements Serializable {
+public class JwtUtil {
     private static final long serialVersionUID = -2550185165626007488L;
 
-    public static final long JWT_TOKEN_VALIDITY = 24 * 60 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 5184000;
 
     @Value("${crypt.secret}")
     private String secret;
@@ -45,7 +44,6 @@ public class JwtUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-    //generate token for user
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername());
@@ -58,7 +56,6 @@ public class JwtUtil implements Serializable {
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
-    //validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));

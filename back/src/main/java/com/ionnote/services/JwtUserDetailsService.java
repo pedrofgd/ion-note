@@ -8,12 +8,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
-public class JwtUserDetailsService implements UserDetailsService, Serializable {
+public class JwtUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
