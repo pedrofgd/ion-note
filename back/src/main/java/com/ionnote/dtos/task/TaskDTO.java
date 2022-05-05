@@ -3,7 +3,6 @@ package com.ionnote.dtos.task;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,7 +10,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskDTO {
-    private UUID uuid;
+    private String uuid;
     private String name;
     private LocalDateTime deadline;
     private Boolean completed;
