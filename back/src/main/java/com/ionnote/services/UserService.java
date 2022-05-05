@@ -5,6 +5,8 @@ import com.ionnote.dtos.user.GetUserDTO;
 import com.ionnote.entities.User;
 import com.ionnote.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void createUser(CreateUserDTO dto) {
+        if(userRepository.findByEmail(dto.getEmail()).isPresent()){
+            throw new DuplicateKeyException("EMAIL ALREADY IN USE");
+        }
         var tempUser = User.builder()
                 .uuid(UUID.randomUUID().toString())
                 .name(dto.getName())
