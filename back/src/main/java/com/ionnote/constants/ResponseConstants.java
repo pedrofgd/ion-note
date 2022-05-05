@@ -9,6 +9,7 @@ import lombok.Getter;
 public enum ResponseConstants {
     SUCCESS("SUCCESS"),
     EVENT_NOT_FOUND("EVENT NOT FOUND"),
+    USER_NOT_FOUND("USER NOT FOUND"),
     NOTE_NOT_FOUND("NOTE NOT FOUND"),
     TASK_NOT_FOUND("TASK NOT FOUND"),
     UNKNOWN_ERROR("UNKNOWN ERROR"),

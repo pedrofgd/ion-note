@@ -6,6 +6,7 @@ import com.ionnote.entities.User;
 import com.ionnote.exceptions.UserNotFoundException;
 import com.ionnote.utils.JwtUtil;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,8 @@ public class AuthService {
     private AuthenticationManager authenticationManager;
     private JwtUtil jwtTokenUtil;
     private JwtUserDetailsService userDetailsService;
+
+    @Lazy
     private UserService userService;
 
     public String auth(JwtRequest authenticationRequest) {
