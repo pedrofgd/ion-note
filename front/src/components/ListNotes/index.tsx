@@ -4,14 +4,13 @@ import { Container } from "./styles"
 
 import Button from "../Button"
 import NoteItem from "../NoteItem"
-import CreateNote from "../CreateNote"
 
 import { useNote } from '../../context/Note'
 
 import api from '../../services/api'
 
 const ListNotes: React.FC = () => {
-   const { createNoteActive, setCreateNoteActive } = useNote();
+   const { data, setData, createNoteActive, setCreateNoteActive } = useNote();
 
    const [notes, setNotes] = useState([]);
 
@@ -28,11 +27,9 @@ const ListNotes: React.FC = () => {
          <Button 
             text="+ criar nota"
             onClick={() => {
-               setCreateNoteActive((createNoteActive: boolean) => !createNoteActive)
+               setData(null);
             }}
          />
-
-         { createNoteActive == true ? <CreateNote /> : undefined }
 
          {/* TODO navegação das notas (atualizar o EditorJs com os dados da nota e marcar como isActive) */}
          {notes.map(note => (
