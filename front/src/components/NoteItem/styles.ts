@@ -35,7 +35,7 @@ export const Container = styled.div<Props>`
    }
 `
 
-export const Title = styled.a`
+export const Title = styled.div`
    grid-area: TL;
    
    font-size: 20px;
@@ -46,6 +46,7 @@ export const Title = styled.a`
    text-decoration: none;
    color: ${props => props.theme.colors.text};
    transition: 0.2s;
+   cursor: pointer;
 
    :hover {
       opacity: 0.8;

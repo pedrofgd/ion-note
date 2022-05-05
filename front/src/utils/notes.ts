@@ -27,7 +27,7 @@ export const notes = [
              "id" : "871FOkhg8e",
              "type" : "paragraph",
              "data" : {
-                 "text": ""
+                 "text": "Note 01 blablablablablablabl"
              }
            },
          ]

@@ -8,7 +8,7 @@ export type Props = {
 
 export default function NoteProvider(props: Props) {
    const { children } = props;
-   const [data, setData] = useState([]);
+   const [data, setData] = useState(null);
 
    return (
       <NoteContext.Provider value={{

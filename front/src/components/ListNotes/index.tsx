@@ -7,67 +7,16 @@ import NoteItem from "../NoteItem"
 
 import { notes } from '../../utils/notes'
 
+import api from '../../services/api'
+
 const ListNotes: React.FC = () => {
-   const [notes, setNotes] = useState([{
-      id: 1,
-      title: 'note 1',
-      description: 'bla bla bla lba bla',
-      content: {
-         blocks: [
-           {
-             "id" : "871FOkhg8e",
-             "type" : "header",
-             "data" : {
-                 "level" : 1
-             }
-           },
-           {
-             "id" : "871FOkhg8e",
-             "type" : "header",
-             "data" : {
-                 "level" : 2
-             }
-           },
-           {
-             "id" : "871FOkhg8e",
-             "type" : "paragraph",
-             "data" : {
-                 "text": ""
-             }
-           },
-         ]
-      }
-   },
-   {
-      id: 1,
-      title: 'note 1',
-      description: 'bla bla bla lba bla',
-      content: {
-         blocks: [
-           {
-             "id" : "871FOkhg8e",
-             "type" : "header",
-             "data" : {
-                 "level" : 1
-             }
-           },
-           {
-             "id" : "871FOkhg8e",
-             "type" : "header",
-             "data" : {
-                 "level" : 2
-             }
-           },
-           {
-             "id" : "871FOkhg8e",
-             "type" : "paragraph",
-             "data" : {
-                 "text": ""
-             }
-           },
-         ]
-      }
-   }]);
+   const [notes, setNotes] = useState([]);
+
+   useEffect(() => {
+      api.get('note', {}).then(response => {
+            setNotes(response.data.data);
+         });
+   }, [])
 
    return (
       <Container>
@@ -79,9 +28,10 @@ const ListNotes: React.FC = () => {
          {notes.map(note => (
             <NoteItem
                key={note.title} 
-               title="note 1" 
-               description="description" 
-               date="22/03/2022" 
+               title={note.title}
+               description={note.description}
+               date="22/03/2022" // TODO utilizar data do objeto
+               content={note.content}
             />
          ))}
          

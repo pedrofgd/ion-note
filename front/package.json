@@ -29,6 +29,7 @@
     "@editorjs/table": "^2.0.1",
     "@editorjs/underline": "^1.0.0",
     "autoprefixer": "^9.8.8",
+    "axios": "^0.27.2",
     "dayjs": "^1.11.0",
     "editorjs-alert": "^1.0.3",
     "editorjs-change-case": "^0.0.3",
