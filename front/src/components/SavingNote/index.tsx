@@ -6,7 +6,7 @@ import { useNote } from '../../context/Note'
 import api from '../../services/api'
 
 const SavingNote: React.FC = () => {
-   const { setSaveNote, noteContent, setNotesList } = useNote();
+   const { setData, noteContent, setNotesList } = useNote();
    
    
    function save() {
@@ -22,6 +22,7 @@ const SavingNote: React.FC = () => {
          content
       }).then(() => {
          alert('Nota salva com sucesso')
+         setData(content)
          setNotesList(null) // TODO: recurso temporario para atualizar a lista de notas
       })
    }
