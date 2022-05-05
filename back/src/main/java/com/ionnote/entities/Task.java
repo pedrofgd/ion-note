@@ -17,6 +17,7 @@ public class Task {
     @Id
     private UUID uuid;
 
+    private String ownerId;
     private String name;
     private LocalDateTime deadline;
     private Boolean completed;

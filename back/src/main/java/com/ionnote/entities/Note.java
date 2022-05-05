@@ -18,6 +18,7 @@ public class Note {
     @Id
     private UUID uuid;
 
+    private String ownerId;
     private String title;
     private String subtitle;
     private String description;

@@ -18,6 +18,7 @@ public class Event {
     @Id
     private UUID uuid;
 
+    private String ownerId;
     private String name;
     private LocalDateTime start;
     private LocalDateTime end;
