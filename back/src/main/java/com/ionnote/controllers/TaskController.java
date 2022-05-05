@@ -6,7 +6,9 @@ import com.ionnote.dtos.task.CreateTaskDTO;
 import com.ionnote.dtos.task.DeleteTaskDTO;
 import com.ionnote.dtos.task.ReadTaskDTO;
 import com.ionnote.dtos.task.UpdateTaskDTO;
+import com.ionnote.exceptions.ForbiddenException;
 import com.ionnote.exceptions.TaskNotFoundException;
+import com.ionnote.exceptions.UserNotFoundException;
 import com.ionnote.services.AuthService;
 import com.ionnote.services.TaskService;
 import lombok.AllArgsConstructor;
@@ -32,6 +34,12 @@ public class TaskController {
             response.setMessage(ResponseConstants.SUCCESS.getMessage());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
+        catch (UserNotFoundException e) {
+            log.error("CREATE TASK OPERATION FAILED ({})::{}",ResponseConstants.USER_NOT_FOUND.getMessage(),dto.toString());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
         catch (Exception e) {
             log.error("CREATE TASK OPERATION FAILED::{}",dto.toString());
             e.printStackTrace();
@@ -54,11 +62,23 @@ public class TaskController {
             response.setMessage(ResponseConstants.TASK_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
+        catch (UserNotFoundException e) {
+            log.error("READ TASK OPERATION FAILED ({})::{}",ResponseConstants.USER_NOT_FOUND.getMessage(),dto.toString());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+        catch (ForbiddenException e) {
+            log.error("READ TASK OPERATION FAILED ({})::{}",ResponseConstants.FORBIDDEN.getMessage(),dto.toString());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
         catch (Exception e) {
             log.error("READ TASK OPERATION FAILED::{}",dto.getUuid());
             e.printStackTrace();
             response.setMessage(e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -76,11 +96,23 @@ public class TaskController {
             response.setMessage(ResponseConstants.TASK_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
+        catch (UserNotFoundException e) {
+            log.error("UPDATE TASK OPERATION FAILED ({})::{}",ResponseConstants.USER_NOT_FOUND.getMessage(),dto.toString());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+        catch (ForbiddenException e) {
+            log.error("UPDATE TASK OPERATION FAILED ({})::{}",ResponseConstants.FORBIDDEN.getMessage(),dto.toString());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
         catch (Exception e) {
             log.error("UPDATE TASK OPERATION FAILED::{}",dto.getUuid());
             e.printStackTrace();
             response.setMessage(e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -98,11 +130,23 @@ public class TaskController {
             response.setMessage(ResponseConstants.TASK_NOT_FOUND.getMessage());
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
+        catch (UserNotFoundException e) {
+            log.error("DELETE TASK OPERATION FAILED ({})::{}",ResponseConstants.USER_NOT_FOUND.getMessage(),dto.toString());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+        catch (ForbiddenException e) {
+            log.error("DELETE TASK OPERATION FAILED ({})::{}",ResponseConstants.FORBIDDEN.getMessage(),dto.toString());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
         catch (Exception e) {
             log.error("DELETE TASK OPERATION FAILED::{}",dto.getUuid());
             e.printStackTrace();
             response.setMessage(e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -113,6 +157,12 @@ public class TaskController {
             log.info(authService.getLoggedUser().getId());
             response.setData(taskService.readAllTasks());
             return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        catch (UserNotFoundException e) {
+            log.error("GET ALL TASKS  OPERATION FAILED ({})::",ResponseConstants.USER_NOT_FOUND.getMessage());
+            e.printStackTrace();
+            response.setMessage(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
         catch (Exception e){
             log.error("GET ALL TASKS OPERATION FAILED");

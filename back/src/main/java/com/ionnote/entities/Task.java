@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Task {
     @Id
-    private UUID uuid;
+    private String uuid;
 
     private String ownerId;
     private String name;
