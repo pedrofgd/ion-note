@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Log4j2
+@CrossOrigin
 @RestController
 @RequestMapping("event")
 @AllArgsConstructor
