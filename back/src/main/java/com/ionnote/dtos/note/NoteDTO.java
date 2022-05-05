@@ -3,7 +3,6 @@ package com.ionnote.dtos.note;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,7 +10,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoteDTO {
-    private UUID uuid;
+    private String uuid;
     private String title;
     private String subtitle;
     private String description;
