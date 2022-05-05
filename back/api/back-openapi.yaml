@@ -226,6 +226,21 @@ paths:
     post:
       summary: "POST signUp"
       operationId: "createUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "testUser"
+                email:
+                  type: string
+                  example: "test.com"
+                password:
+                  type: string
+                  example: "1234"
       responses:
         "200":
           description: "OK"
