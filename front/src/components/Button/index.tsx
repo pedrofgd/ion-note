@@ -3,13 +3,17 @@ import { Container, Text } from './styles';
 
 export interface Props {
    text: string;
+   onClick: React.MouseEventHandler;
 }
 
 const Button: React.FC<Props> = ({
-   text
+   text,
+   onClick
 }) => {
    return (
-      <Container>
+      <Container
+         onClick={onClick}
+      >
          <Text>{text}</Text>  
       </Container>
    )

@@ -21,10 +21,6 @@ const ListTasks: React.FC = () => {
 
          <SessionTitle>Completadas</SessionTitle>
          <TaskItem task="Trabalho metodologia de pesquisa" date="25/03/22" completed={true} />
-         <TaskItem task="Trabalho metodologia de pesquisa" date="25/03/22" completed={true} />
-         <TaskItem task="Trabalho metodologia de pesquisa" date="25/03/22" completed={true} />
-         <TaskItem task="Trabalho metodologia de pesquisa" date="25/03/22" completed={true} />
-         <TaskItem task="Trabalho metodologia de pesquisa" date="25/03/22" completed={true} />
          
       </Container>
    );
