@@ -1,0 +1,231 @@
+openapi: "3.0.3"
+
+info:
+  title: "back API"
+  description: "back API"
+  version: "1.0.0"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+servers:
+  - url: "http://localhost:8080"
+  - url: "http://20.226.53.145:8080/"
+paths:
+  /task:
+    get:
+      summary: "GET task"
+      operationId: "readAllTasks"
+      responses:
+        "200":
+          description: "OK"
+  /task/create:
+    post:
+      summary: "POST task/create"
+      operationId: "createTask"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "testTask"
+                deadline:
+                  type: string
+                  example: "2022-03-24T04:04:06.000Z"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /task/delete:
+    post:
+      summary: "POST task/delete"
+      operationId: "deleteTask"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /task/read:
+    get:
+      summary: "GET task/read"
+      operationId: "readTask"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /task/update:
+    post:
+      summary: "POST task/update"
+      operationId: "updateTask"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /:
+    get:
+      summary: "GET "
+      operationId: "healthCheck"
+      responses:
+        "200":
+          description: "OK"
+  /user:
+    get:
+      summary: "GET user"
+      operationId: "getUser"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /note:
+    get:
+      summary: "GET note"
+      operationId: "readAllNotes"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+  /note/create:
+    post:
+      summary: "POST note/create"
+      operationId: "createNote"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /note/delete:
+    post:
+      summary: "POST note/delete"
+      operationId: "deleteNote"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /note/read:
+    get:
+      summary: "GET note/read"
+      operationId: "readNote"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /note/update:
+    post:
+      summary: "POST note/update"
+      operationId: "updateNote"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /event:
+    get:
+      summary: "GET event"
+      operationId: "readAllEvents"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+  /event/create:
+    post:
+      summary: "POST event/create"
+      operationId: "createEvent"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /event/delete:
+    post:
+      summary: "POST event/delete"
+      operationId: "deleteEvent"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /event/read:
+    get:
+      summary: "GET event/read"
+      operationId: "readEvent"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /event/update:
+    post:
+      summary: "POST event/update"
+      operationId: "updateEvent"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: Not authenticated
+        "403":
+          description: Access token does not have the required scope
+  /signIn:
+    post:
+      summary: "POST signIn"
+      operationId: "createAuthenticationToken"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "test.co"
+                password:
+                  type: string
+                  example: "1234"
+      responses:
+        "200":
+          description: "OK"
+  /signUp:
+    post:
+      summary: "POST signUp"
+      operationId: "createUser"
+      responses:
+        "200":
+          description: "OK"
