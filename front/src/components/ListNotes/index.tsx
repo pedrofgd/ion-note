@@ -10,15 +10,16 @@ import { useNote } from '../../context/Note'
 import api from '../../services/api'
 
 const ListNotes: React.FC = () => {
-   const { data, setData, createNoteActive, setCreateNoteActive } = useNote();
+   const { data, setData, notesList, setNotesList } = useNote();
 
    const [notes, setNotes] = useState([]);
 
    useEffect(() => {
       api.get('note', {}).then(response => {
             setNotes(response.data.data);
+            setNotesList(response.data.data);
          });
-   }, [])
+   }, [notesList])
 
    return (
       <Container>

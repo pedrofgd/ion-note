@@ -9,17 +9,20 @@ export type Props = {
 export default function NoteProvider(props: Props) {
    const { children } = props;
    const [data, setData] = useState(null);
-   const [createNoteActive, setCreateNoteActive] = useState(false);
+   const [notesList, setNotesList] = useState({});
    const [saveNote, setSaveNote] = useState(false);
+   const [noteContent, setNoteContent] = useState({});
 
    return (
       <NoteContext.Provider value={{
          data,
          setData,
-         createNoteActive,
-         setCreateNoteActive,
+         notesList,
+         setNotesList,
          saveNote, 
-         setSaveNote
+         setSaveNote,
+         noteContent, 
+         setNoteContent
       }}>
          {children}
       </NoteContext.Provider>
@@ -31,18 +34,22 @@ export function useNote() {
    const { 
       data, 
       setData,
-      createNoteActive,
-      setCreateNoteActive,
+      notesList,
+      setNotesList,
       saveNote, 
-      setSaveNote
+      setSaveNote,
+      noteContent, 
+      setNoteContent
    } = context;
 
    return { 
       data, 
       setData,
-      createNoteActive,
-      setCreateNoteActive,
+      notesList,
+      setNotesList,
       saveNote, 
-      setSaveNote
+      setSaveNote,
+      noteContent, 
+      setNoteContent
    };
 }

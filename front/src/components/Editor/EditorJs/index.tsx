@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import EditorJS from '@editorjs/editorjs';
 
 import { tools } from './config';
 import { useNote } from "../../../context/Note";
 
 const EditorJs: React.FC = () => {
-  const { data } = useNote();
+  const { 
+    data, 
+    setNoteContent
+  } = useNote();
 
   const initEditor = () => {
     new EditorJS({
@@ -36,6 +39,13 @@ const EditorJs: React.FC = () => {
             }
           },
         ]
+      },
+
+      onChange: (api, event) => {
+        api.saver.save()
+          .then((outputData) => {
+            setNoteContent(outputData);
+          })
       }
     });
   }

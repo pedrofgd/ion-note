@@ -3,8 +3,28 @@ import { Container, SyncIcon, SaveIcon, ClickButton, Text } from './styles'
 
 import { useNote } from '../../context/Note'
 
+import api from '../../services/api'
+
 const SavingNote: React.FC = () => {
-   const { setSaveNote } = useNote();
+   const { setSaveNote, noteContent, setNotesList } = useNote();
+   
+   
+   function save() {
+      const title = noteContent.blocks[0].data.text
+      const subtitle = noteContent.blocks[1].data.text
+      const description = noteContent.blocks[1].data.text;
+      const content = noteContent;
+
+      api.post('note/create', {
+         title,
+         subtitle,
+         description,
+         content
+      }).then(() => {
+         alert('Nota salva com sucesso')
+         setNotesList(null) // TODO: recurso temporario para atualizar a lista de notas
+      })
+   }
 
    return (
       <Container>
@@ -13,8 +33,7 @@ const SavingNote: React.FC = () => {
          {/* <Text>Saving note</Text> */}
 
          <ClickButton onClick={() => {
-            alert("Ok");
-            setSaveNote(true);
+            save()
          }}>
             <SaveIcon />
             <Text>Save note</Text>
