@@ -24,8 +24,8 @@ public class EventService {
     public void createEvent(CreateEventDTO dto) throws UserNotFoundException {
         var loggedUser = authService.getLoggedUser();
         var tempEvent = Event.builder()
-                .id(UUID.randomUUID().toString())
-                .ownerId(loggedUser.getId())
+                .uuid(UUID.randomUUID().toString())
+                .ownerId(loggedUser.getUuid())
                 .name(dto.getName())
                 .start(dto.getStart())
                 .end(dto.getEnd())
@@ -38,7 +38,7 @@ public class EventService {
     public EventDTO readEvent(ReadEventDTO dto) throws EventNotFoundException, UserNotFoundException, ForbiddenException {
         var event = eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(event.getId())){
+        if (!loggedUser.getUuid().equals(event.getUuid())){
             throw new ForbiddenException();
         }
         var response = new EventDTO();
@@ -48,7 +48,7 @@ public class EventService {
 
     public List<EventDTO> readAllEvents() throws UserNotFoundException {
         var loggedUser = authService.getLoggedUser();
-        var events = eventRepository.findAllByOwnerId(loggedUser.getId());
+        var events = eventRepository.findAllByOwnerId(loggedUser.getUuid());
         return events.stream().map(event -> {
             var tempResponse = new EventDTO();
             BeanUtils.copyProperties(event,tempResponse);
@@ -60,7 +60,7 @@ public class EventService {
     public void updateEvent(UpdateEventDTO dto) throws EventNotFoundException, UserNotFoundException, ForbiddenException {
         var event = eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(event.getId())){
+        if (!loggedUser.getUuid().equals(event.getUuid())){
             throw new ForbiddenException();
         }
         BeanUtils.copyProperties(dto, event);
@@ -71,7 +71,7 @@ public class EventService {
     public void deleteEvent(DeleteEventDTO dto) throws EventNotFoundException, UserNotFoundException, ForbiddenException {
         var event = eventRepository.findById(dto.getUuid()).orElseThrow(EventNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(event.getId())){
+        if (!loggedUser.getUuid().equals(event.getUuid())){
             throw new ForbiddenException();
         }
         eventRepository.delete(event);

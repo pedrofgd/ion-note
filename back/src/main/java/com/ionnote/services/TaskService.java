@@ -24,8 +24,8 @@ public class TaskService {
         var loggedUser = authService.getLoggedUser();
 
         var tempTask = Task.builder()
-                .id(UUID.randomUUID().toString())
-                .ownerId(loggedUser.getId())
+                .uuid(UUID.randomUUID().toString())
+                .ownerId(loggedUser.getUuid())
                 .name(dto.getName())
                 .deadline(dto.getDeadline())
                 .completed(Boolean.FALSE)
@@ -38,7 +38,7 @@ public class TaskService {
     public TaskDTO readTask(ReadTaskDTO dto) throws TaskNotFoundException, UserNotFoundException, ForbiddenException {
         var task = taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(task.getOwnerId())){
+        if (!loggedUser.getUuid().equals(task.getOwnerId())){
             throw new ForbiddenException();
         }
         var response = new TaskDTO();
@@ -48,7 +48,7 @@ public class TaskService {
 
     public List<TaskDTO> readAllTasks() throws UserNotFoundException {
         var loggedUser = authService.getLoggedUser();
-        var tasks = taskRepository.findAllByOwnerId(loggedUser.getId());
+        var tasks = taskRepository.findAllByOwnerId(loggedUser.getUuid());
         return tasks.stream().map(task -> {
             var tempResponse = new TaskDTO();
             BeanUtils.copyProperties(task,tempResponse);
@@ -60,7 +60,7 @@ public class TaskService {
     public void updateTask(UpdateTaskDTO dto) throws TaskNotFoundException, UserNotFoundException, ForbiddenException {
         var task = taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(task.getOwnerId())){
+        if (!loggedUser.getUuid().equals(task.getOwnerId())){
             throw new ForbiddenException();
         }
         BeanUtils.copyProperties(dto, task);
@@ -71,7 +71,7 @@ public class TaskService {
     public void deleteTask(DeleteTaskDTO dto) throws TaskNotFoundException, UserNotFoundException, ForbiddenException {
         var task = taskRepository.findById(dto.getUuid()).orElseThrow(TaskNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(task.getOwnerId())){
+        if (!loggedUser.getUuid().equals(task.getOwnerId())){
             throw new ForbiddenException();
         }
         taskRepository.delete(task);

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Note {
     @Id
-    private String id;
+    private String uuid;
 
     private String ownerId;
     private String title;

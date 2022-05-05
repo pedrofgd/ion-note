@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NoteDTO {
-    private String id;
+    private String uuid;
     private String title;
     private String subtitle;
     private String description;

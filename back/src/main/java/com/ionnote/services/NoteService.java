@@ -29,8 +29,8 @@ public class NoteService {
                 .subtitle(dto.getSubtitle())
                 .description(dto.getDescription())
                 .content(dto.getContent())
-                .id(UUID.randomUUID().toString())
-                .ownerId(loggedUser.getId())
+                .uuid(UUID.randomUUID().toString())
+                .ownerId(loggedUser.getUuid())
                 .createdAt(LocalDateTime.now())
                 .build();
 
@@ -41,7 +41,7 @@ public class NoteService {
     public NoteDTO readNote(ReadNoteDTO dto) throws NoteNotFoundException, UserNotFoundException, ForbiddenException {
         var note = noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(note.getId())){
+        if (!loggedUser.getUuid().equals(note.getUuid())){
             throw new ForbiddenException();
         }
         var response = new NoteDTO();
@@ -51,7 +51,7 @@ public class NoteService {
 
     public List<NoteDTO> readAllNotes() throws UserNotFoundException {
         var loggedUser = authService.getLoggedUser();
-        var notes = noteRepository.findAllByOwnerId(loggedUser.getId());
+        var notes = noteRepository.findAllByOwnerId(loggedUser.getUuid());
         return notes.stream().map(note -> {
             var tempResponse = new NoteDTO();
             BeanUtils.copyProperties(note,tempResponse);
@@ -63,7 +63,7 @@ public class NoteService {
     public void updateNote(UpdateNoteDTO dto) throws NoteNotFoundException, UserNotFoundException, ForbiddenException {
         var note = noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(note.getId())){
+        if (!loggedUser.getUuid().equals(note.getUuid())){
             throw new ForbiddenException();
         }
         BeanUtils.copyProperties(dto, note);
@@ -74,7 +74,7 @@ public class NoteService {
     public void deleteNote(DeleteNoteDTO dto) throws NoteNotFoundException, UserNotFoundException, ForbiddenException {
         var note = noteRepository.findById(dto.getUuid()).orElseThrow(NoteNotFoundException::new);
         var loggedUser = authService.getLoggedUser();
-        if (!loggedUser.getId().equals(note.getId())){
+        if (!loggedUser.getUuid().equals(note.getUuid())){
             throw new ForbiddenException();
         }
         noteRepository.delete(note);

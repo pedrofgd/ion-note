@@ -154,7 +154,7 @@ public class TaskController {
     public ResponseEntity<ResponseDTO> readAllTasks(){
         var response = new ResponseDTO();
         try {
-            log.info(authService.getLoggedUser().getId());
+            log.info(authService.getLoggedUser().getUuid());
             response.setData(taskService.readAllTasks());
             return new ResponseEntity<>(response, HttpStatus.OK);
         }

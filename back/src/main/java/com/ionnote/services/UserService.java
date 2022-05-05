@@ -19,7 +19,7 @@ public class UserService {
 
     public void createUser(CreateUserDTO dto) {
         var tempUser = User.builder()
-                .id(UUID.randomUUID().toString())
+                .uuid(UUID.randomUUID().toString())
                 .name(dto.getName())
                 .email(dto.getEmail())
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))

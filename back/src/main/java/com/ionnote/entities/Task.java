@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Task {
     @Id
-    private String id;
+    private String uuid;
 
     private String ownerId;
     private String name;
