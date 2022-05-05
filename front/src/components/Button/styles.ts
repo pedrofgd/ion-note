@@ -21,8 +21,9 @@ export const Container = styled.button`
    :hover {
       background-color: ${props => props.theme.colors.buttonOpacity}; 
       color: ${props => props.theme.colors.black}
-
    }
+
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 `
 
 export const Text = styled.span`

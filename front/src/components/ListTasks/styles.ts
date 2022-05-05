@@ -15,11 +15,13 @@ export const Container = styled.div`
    background-color: ${props => props.theme.colors.background};
    border: 1px solid;
    border-color: #D9D9D9;
-   border-top-left-radius: 10px;
-   border-top-right-radius: 10px;
-   border-bottom-left-radius: 20px;
-   border-bottom-right-radius: 20px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px;
    padding: 30px 20px;
+
+   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
    max-height: 100vh;
 
